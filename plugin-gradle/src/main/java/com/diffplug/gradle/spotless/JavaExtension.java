@@ -120,7 +120,7 @@ public class JavaExtension extends FormatExtension implements HasBuiltinDelimite
 	}
 
 	public class GoogleJavaFormatConfig {
-		final String version;
+		String version;
 		String style;
 
 		GoogleJavaFormatConfig(String version) {
@@ -136,6 +136,11 @@ public class JavaExtension extends FormatExtension implements HasBuiltinDelimite
 
 		public void aosp() {
 			style("AOSP");
+		}
+		
+		public void version(String version) {
+			this.version = Objects.requireNonNull(version);
+			replaceStep(createStep());
 		}
 
 		private FormatterStep createStep() {
